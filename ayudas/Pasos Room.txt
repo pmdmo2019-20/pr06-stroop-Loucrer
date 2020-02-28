@@ -1,0 +1,69 @@
+**********Room********** 
+
+ANOTACIONES: 
+    //Para entidades y sus atributos
+    @Ignore. Indica que un campo dentro de una entidad no será almacenada en la BD.
+    @PrimaryKey. El campo que lleve dicha anotación se tomará como clave primaria de la tabla.
+    @Entity. Convertirá a la clase que esté precedida de esta anotación en una entidad / tabla de la BD.
+    @ColumnInfo. Podemos establecer un nombre específico a las columnas con esta anotación.
+    @Index. Declara el índice en una entidad.
+    @ForeignKey. Podemos almacenar la clave primaria de otra tabla y especificarle que dicho campo es una clave foránea en nuestra tabla.
+    @Embedded. Se usa cuando queremos incluir una entidad dentro de otra.
+    //Para interfaz Dao
+    @Dao. Marca la clase como un objeto de acceso de datos (Data Access Object).
+    @Query. Indica que un método será tratado como consultas a la BD.
+    @Insert. El método se encargará de hacer una inserción en la BD.
+    @Delete. El método será marcado como una acción de borrado en la BD.
+    @Update. El método que lo lleve se utilizará para actualizar objetos en la BD.
+    @Database. Establece como RoomDataBase a la clase que lleve esta anotación.
+
+-> 1. Crear las entidades (ponerlas en el paquete data.entity). Para crear una entidad de la BD: etiqueta @Entity en la clase. 
+Se crea la clase y se declaran sus atributos. val la FK y var los campos normales
+Si hay que poner especificaciones como FK, delete on cascade, etc. se ponen dentro de @Entity(aqui)
+
+-> 2. Crear las interfaces DAO (ponerlas en el paquete data).
+Nos permite tener los métodos para hacer peticiones a la base de datos
+Para crear una interfaz DAO se pone la etiqueta @Dao en dicha interfaz
+Dentro de la interfaz definimos los métodos, cada uno con su etiqueta correspondiente
+Por ejemplo, para hacer una consulta de todas las filas de la tabla Tabla, dentro de la interfaz se pone:
+
+@Query(SELECT * FROM Tabla)
+fun getAllRowsFromTabla() : List<Tabla>
+
+Se puede hacer query, insert, delete, update... arriba en las anotaciones están todas.
+
+-> 3. Crear la BD. Se trata de una clase abstracta que extiende de RoomDatabase. Lleva la etiqueta @Database(cosas)
+Dentro de la etiqueta @Database hay cosas. Hay que poner
+entities: con las clases de las entidades
+version
+exportSchema = true
+
+Y dentro de la clase abstracta pegamos esto 
+
+abstract class ClaseAbstractaDatabase : RoomDatabase() {
+
+    abstract val interfazDao: InterfazDao (hay que crear un val abstracto por cada interfaz que tengamos)
+
+    companion object {
+        @Volatile
+        private var INSTANCE: ClaseAbstractaDatabase? = null
+ fun getInstance(context: Context): ClaseAbstractaDatabase {
+            if (INSTANCE == null) {
+                synchronized(this) {
+                    if (INSTANCE == null) {
+                        INSTANCE = Room.databaseBuilder(
+                            context.applicationContext,
+                            ClaseAbstractaDatabase::class.java,
+                            "nombre_de_la_database"
+                        ).allowMainThreadQueries().build()
+                    }
+                }
+            }
+            return INSTANCE!!
+        }
+    }
+
+
+
+Web útil:
+https://betabeers.com/blog/room-otra-forma-crear-bases-datos-android-androidmeetskotlin-356/

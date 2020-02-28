@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fond_player"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@color/design_default_color_secondary_variant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@+id/fond_player"
+        app:layout_constraintEnd_toEndOf="@+id/fond_player"
+        app:layout_constraintStart_toStartOf="@+id/fond_player"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/main_margin_2x"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fond_player">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_tarjet1"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:contentDescription="@string/tarjet_contentDescription"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_black_24dp"
+                android:tint="@color/playOption" />
+
+            <TextView
+                android:id="@+id/textCardPlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dashboard_imgPlay"
+                android:textColor="@color/playOption"
+                android:textSize="@dimen/main_margin_3x"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSettings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/main_margin_2x"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/fond_player">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_tarjet2"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tarjet_contentDescription"
+                android:src="@drawable/ic_settings_black_24dp"
+                android:tint="@color/settingsOption" />
+
+            <TextView
+                android:id="@+id/textCardSettings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dashboard_imgSettings"
+                android:textColor="@color/settingsOption"
+                android:textSize="@dimen/main_margin_3x"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardRanking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/main_margin_2x"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_tarjet3"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tarjet_contentDescription"
+                android:src="@drawable/ic_play_black_24dp"
+                android:tint="@color/rankingOption"
+                app:srcCompat="@drawable/ic_ranking_black_24dp" />
+
+            <TextView
+                android:id="@+id/textCardRanking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dashboard_imgRanking"
+                android:textColor="@color/rankingOption"
+                android:textSize="@dimen/main_margin_3x"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAssitant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/main_margin_2x"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_tarjet4"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:contentDescription="@string/tarjet_contentDescription"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_black_24dp"
+                android:tint="@color/assistantOption"
+                app:srcCompat="@drawable/ic_assistant_black_24dp" />
+
+            <TextView
+                android:id="@+id/textCardAssitant"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dashboard_imgAssistant"
+                android:textColor="@color/assistantOption"
+                android:textSize="@dimen/main_margin_3x"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPlayers"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/main_margin_2x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_tarjet5"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tarjet_contentDescription"
+                android:src="@drawable/ic_play_black_24dp"
+                android:tint="@color/playerOption"
+                app:srcCompat="@drawable/ic_player_black_24dp" />
+
+            <TextView
+                android:id="@+id/textCardPlayers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dashboard_imgPlayer"
+                android:textColor="@color/playerOption"
+                android:textSize="@dimen/main_margin_3x"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAbout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/main_margin_2x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_tarjet6"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/tarjet_contentDescription"
+                android:src="@drawable/ic_play_black_24dp"
+                android:tint="@color/aboutOption"
+                app:srcCompat="@drawable/ic_about_black_24dp" />
+
+            <TextView
+                android:id="@+id/textCardAbout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dashboard_imgAbout"
+                android:textColor="@color/aboutOption"
+                android:textSize="@dimen/main_margin_3x"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="403dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="569dp" />
+
+    <TextView
+        android:id="@+id/lblPlayerSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/player_selection_no_player_selected"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintBottom_toBottomOf="@+id/fond_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

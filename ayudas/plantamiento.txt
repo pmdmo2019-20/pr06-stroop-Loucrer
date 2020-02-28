@@ -1,0 +1,149 @@
+BASE DE DATOS:
+Tiene solo dos tablas:
+Players y Games
+
+ORDEN DE DESARROLLAR LA APP:
+0º Mirar los recursos que nos da pedro, sobre el sharedPreference, cadenas, valores de enteros, esto es muy IMPORTANTE para los ID.
+1º Crear todos los layout.
+2º Desarrollar las pantallas tontas(About, Assistant)
+3ºCrear la BD
+4ºComenzar con la MainActivity
+5ºComenzamos a crear las Clases que veamos coveniente
+6ºDejar para lo último el fragmento de juego
+
+
+------------------------------------------------
+
+************************************
+El boton que aparecer de ayuda     *
+en todas las toolbar lo que hace   *
+es abrir un DialogFragment con     *
+un mensaje explicativo de          *
+dicho fragmento y con              *
+solo el boton de aceptar para      *
+que se cierre.			   *
+************************************
+
+
+-------------------------------------------------
+
+FRAGMENTOS:
+Aparece el fragment_initial:
+-> Para saber si es la 1º vez que se inicia la aplicacion hacerlo con un sharedPreference por ejemplo con un booleano.
+-> Tiene un viewPager
+-> ToolBaar transparente
+-> los puntitos de abajo lo da él
+-> para hacer los slider hacer un triste
+recyclerView
+	-Metodo Bind()
+	-Le pasaremos img, color, texto y booleano si es el ultimo
+	-Si es el ultimo mostrar el boton de finish
+
+fragment_dashboard:
+-> toolbar: lo aporta cada fragmento
+-> Contiene un view simple con un fondo verde y encima un imgView -> que estará observando tambien la sharedPreference para ver el jugador seleccionado, por defecto no hay ninguno valor -1
+-> se pueden poner viewCards o un recyclerView
+
+fragment_settings:
+-> es una toolbar
+-> y tiene adentro otro fragmento que es el que tiene el fragment_setting
+-> min 7 ver cada configuracion
+
+fragment_ranking:
+-> El valor por defecto es "All" -> settingsPreference -> se cambia si cambias el valor del settingFragment
+-> Si cambiamos en el setting_fragment la configuracion se altera a la configuracion de dicho fragmento
+-> Tiene un spinner
+-> El spinner cargará la lista de jugadores(RecyclerView)
+-> esta ordenador por puntos la aparicion de los jugadores y apareceran los 10 primeros
+-> Segun el modo de filtar en las tarjetas aparecera una informacion:
+	.All:
+		.En las tarjetas aparece la frase "Game mode": modo
+	.Time o Intents:
+		.No aparece dicha frase anterior.
+		. Se consigue con visibility: gone
+			.Se consigue pasando un booleano al item aparte de los datos, donde se dice cual es el filtro seleccionado para pintar una cosa u otra
+
+******Si vamos a jugar sin crear un jugador nos dirige a -> fragment_playerSelections
+fragment_player_selections:
+-> Tenemos un recyclerView donde cargaremos los jugadores creados
+-> tenemos un boton de añadir
+-> Si pulsamos en el boton de añadir nos dirige a ->  fragment_player_creations:
+						    -> nos aparece un recyclerView con una lista de avatares
+						    -> este fragmento eliges un avatar, establece nombre y pulsamos en guardar para crear el jugador
+						    -> cuando seleccionamos a un avatar, 
+						     . tenemos que deseleccionar al que esté seleccionado
+						     . sera mediante una variable que contendrá la posicion del item seleccionado 
+						     . pues el adaptador obtendrá la pos del item seleccionado,quita el pintado del item seleccionado, cambiará el valor de dicha variable y pintará la barra en verde del item.
+						     . Para notificar las acciones anteriores tenemos que hacer un notifyItemChange del item old para quitar la barra y del nuevo para pintarla
+						     . Luego establecerá la imagen del avatar en la vista de imgView.
+-> Cuando guardemos al jugador, nos aparecerá en el recyclerView.
+-> Para seleccionar un item, el proceso es igual que el fragmento_player_creations
+-> IMPORTANTE: Cuando seleccione un elemento, tengo que guardar en el sharedPreference el jugador seleccionado, para cuando vuelva a iniciar la app automaticamente aparezca el jugador seleccionado.
+-> Cuando demos en el back, nos aparecerá el jugador seleccionado como jugador activo para jugar
+	. Para hacer eso: tenemos que observar el sharedPreference desde el fragment_dashboard -> en los apuntes está el codigo para observar un sharedPreference -> copy and paste
+
+fragmen_edit_player:
+-> Se puede ir desde la dashboard pulsando en la imgView del jugador o desde el fragment_selected_players
+-> es un copy paste del fragmento de creacion de jugador
+-> pero se observa el jugador selecionado, se establece el imgView
+-> y se seleccionado el avatar que se tiene puesto(no caigo como hacerlo)
+-> para editarlo tienes que darle a guardar y se actualiza en la base de datos -> entidad players con la consecuencia que el fragmento de rankis tambien 
+	se tiene que actualizar automaticamente ya que hemos hecho un UPDATE de dicho jugador en la BD.
+-> este fragmento en su toolbar aparecera un icono de borrar para eliminar el jugador
+	. Nos aparece un DialogFragment de advertencia para eliminar el jugador actual de la sharedPreference 
+	.Segun el boton de accion que pulsemos:
+		.Si:
+			.Delete "Cascade" -> entidades -> players y games de dicho jugador
+			.Nos dirigue al fragmento fragment_player_selections porque detecta un null para editar y hacemos un onBack
+			.Se cambia el avatar seleccionado en la shared preference a -1 por ejemplo, y se muestra la imagen de preferencia de la aplicacion
+		.No:
+			.Pues se cierra el dialogo
+fragment_play:
+min: 17:50
+Plantearlo entre los 3 xD
+-> No tenemos una toolbar
+-> En un view de color verde en la parte superior tenemos:
+	. Contador de las palabras que van apareciendo: left
+	. Contador de palabras acertadas: center
+	. Contador de intentos{vidas} que tenemos: right
+-> el layout constará:
+	. Una barra que irá en decrechendo con el tiempo(funcion de pedro)
+	. La palabra que irá apareciendo en el centro
+	. Y dos imgView el de correcto (left) e incorrecto (right)
+-> el juego constará de acertar la palabra con su color:
+	. Si aciertas:
+		.Se cambia la palabra
+		.Se resetea el tiempo para cada palabra
+		.Se actualiza las variables contadoras
+	.Si fallas:
+		.Se cambia la palabra
+		.Se resetea el tiempo para cada palabra
+		.Se actualiza las variables contadoras
+		.Segun el modo:
+			.Si es por vidas:
+				.Se resta en la variable contadora una vida
+				.Si nos quedamos sin vidas nos dirigue a fragment_result
+			Si es por tiempo:
+				.Se incrementa la variable de errores
+				.Siempre se termina cuando se termine el tiempo
+-> Cuando se termine la partida, guardamos el resultado en la base de datos
+	.Guardamos el idJugador
+	.Los datos de la partida -> plantear
+Cuando se termine la partida nos dirigira al fragmento de: fragment_result
+
+fragment_result:
+-> tiene toolbar
+-> nos aparece el perfil del jugador en la parte superior
+-> respuestas correctas
+-> respuestas incorrectas
+-> total de puntos
+-> Esta informacion se pasará mediante un viewModel
+-> boton atras -> opcion del navController(si no recuerdo mal se puede hacer desde el grafo) que se cepille todas los fragmentos de la backStack y que vuelva al fragment_dashboard
+-> se nos añade el jugador al ranking del modo de que hayamos jugador
+
+
+
+*******************IMPORTANTE:
+Verse el min 39:35 del video que explica lo del hilo de ejecucion para el tema del tiempo para
+el fragmento de juego, en resumen que nos da las llamadas a los metodos y tenemos que ver donde
+implementarlos.

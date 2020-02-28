@@ -27,5 +27,6 @@
     <dimen name="assistant_imgIcon_size">128dp</dimen>
 
     <dimen name="player_selection_item_imgAvatar_size">40dp</dimen>
+    <dimen name="dashboard_card_img_height">83dp</dimen>
 
 </resources>
