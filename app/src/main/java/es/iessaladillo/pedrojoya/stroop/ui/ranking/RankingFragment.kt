@@ -30,6 +30,8 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
                 (this.requireContext()).gameDao)
     }
 
+    var itemSelected = ""
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViews()
@@ -50,6 +52,7 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                listAdapter.filter = spFilter.selectedItem.toString().toLowerCase()
                 setupBtns()
             }
 
@@ -60,16 +63,13 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
     private fun setupBtns() {
         when {
             spFilter.selectedItem.toString().toLowerCase() == "all" -> {
-                var games = viewmodel.queryAllUserGames()
-                showGames(games)
+                showGames(viewmodel.queryAllUserGames())
             }
             spFilter.selectedItem.toString().toLowerCase() == "time" -> {
-                var games = viewmodel.queryAllUserGamesTime()
-                showGames(games)
+                showGames(viewmodel.queryAllUserGamesTime())
             }
             spFilter.selectedItem.toString().toLowerCase() == "attempts" -> {
-                var games = viewmodel.queryAllUserGamesAttempts()
-                showGames(games)
+                showGames(viewmodel.queryAllUserGamesAttempts())
             }
         }
     }
@@ -97,7 +97,9 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
     }
 
     private fun setupAdapter() {
+        //Para inicializarlo por primera vez
         listAdapter = RankingAdapter(activity!!.application)
+        listAdapter.filter = spFilter.selectedItem.toString().toLowerCase()
     }
 
     private fun setupToolbar() {

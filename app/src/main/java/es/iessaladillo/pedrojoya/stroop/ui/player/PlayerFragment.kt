@@ -85,10 +85,15 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     }
 
     private fun navigateToEditPlayer() {
-        findNavController().navigate(R.id.navigateToEdit)
+        // Esto es como Ionic le pasamos por la ruta el argumento que vamos ha obtener en el otro fragmento.
+        findNavController().navigate(R.id.navigateToEdit, bundleOf(
+            getString(R.string.ARGS_USER_ID) to viewModel.currentUserId.value!!)
+        )
+
     }
 
     private fun navigateToAddPlayer() {
+
         findNavController().navigate(R.id.navigateToAddPlayer)
     }
 

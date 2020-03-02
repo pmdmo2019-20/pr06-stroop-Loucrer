@@ -14,7 +14,7 @@
         android:id="@+id/InfoDialogDestination"
         android:icon="@drawable/ic_help_black_24dp"
         android:title="@string/help_title"
-        android:iconTint="@color/white"
+        app:iconTint="@color/white"
         app:showAsAction="ifRoom"
         tools:targetApi="o" />
 

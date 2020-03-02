@@ -67,18 +67,17 @@
         android:name="es.iessaladillo.pedrojoya.stroop.ui.playerAdd.PlayerFragmentAdd"
         android:label="@string/player_creation_title"
         tools:layout="@layout/player_fragment_add"/>
-    <fragment
-        android:id="@+id/deletedDialogFragment"
+    <dialog
+        android:id="@+id/deletedDialogDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.dialog.DeletedDialogFragment"
         android:label="DeletedDialogFragment" >
+        <action
+            android:id="@+id/toBack"
+            app:popUpTo="@id/playerDestination" />
         <argument
             android:name="userId"
             app:argType="long" />
-        <action
-            android:id="@+id/action_deletedDialogFragment_to_playerDestination"
-            app:destination="@id/playerDestination"
-            app:popUpTo="@id/playerDestination" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/playerEditFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.playerEdit.PlayerEditFragment"

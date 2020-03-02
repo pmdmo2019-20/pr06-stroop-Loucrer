@@ -10,7 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_viewGame"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="126dp"
         app:cardCornerRadius="@dimen/main_card_cornerRadius"
         app:cardElevation="@dimen/cardview_default_elevation"
@@ -85,26 +85,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblTotalWords" />
 
             <TextView
-                android:id="@+id/lblPoints"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="56dp"
-                android:text="@string/game_points"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/lblPoints2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/defaultNickname"
                 android:textColor="@color/rankingOption"
                 android:textSize="@dimen/main_textSize_3x"
                 app:layout_constraintStart_toStartOf="@+id/lblPoints"
                 app:layout_constraintTop_toBottomOf="@+id/lblPoints" />
+
+            <TextView
+                android:id="@+id/lblPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="92dp"
+                android:text="@string/game_points"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

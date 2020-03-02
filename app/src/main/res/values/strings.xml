@@ -107,6 +107,9 @@
     <string name="ARGS_USER_ID" />
     <string name="ARGS_USER_DELETE" />
     <string name="ranking_item">Game mode: %1$s</string>
+    <string name="ranking_minutes">Minutes: %1$s</string>
+    <string name="ranking_words">Words: %1$s</string>
+    <string name="ranking_corrects">Corrects: %1$s</string>
     <string name="game_lblCorrectLabelTotal">CorrectTotal</string>
     <string name="game_lblWordsLabelTotal">WordsTotal</string>
     <string name="game_lblAttempsTotal">AttempsTotal</string>

@@ -23,10 +23,6 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
 
     private lateinit var playerEditAdapter: PlayerEditAdapter
 
-    private val settings: SharedPreferences by lazy {
-        PreferenceManager.getDefaultSharedPreferences(activity)
-    }
-
     private val viewModel: PlayerEditViewModel by viewModels {
         PlayerEditViewModelFactory(
             AppDatabase.getInstance(this.requireContext()).userDao
@@ -34,7 +30,7 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
     }
 
 
-    // Obtenemos el ID de settings.
+    // Obtenemos el ID pasado por el bundle que hemos pasado por el navigate.
     private val userId: Long by lazy {
         arguments!!.getLong(getString(R.string.ARGS_USER_ID))
     }
@@ -112,12 +108,12 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
         toolbar.inflateMenu(R.menu.fragment_edit_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.deleteDestination -> findNavController().navigate(R.id.deletedDialogFragment,
+                R.id.deleteDestination -> findNavController().navigate(R.id.deletedDialogDestination,
                     bundleOf(
                         getString(R.string.ARGS_USER_DELETE) to userId)
                 )
 
-                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogDestination,
+                R.id.InfoDialogDestination -> findNavController().navigate(R.id .infoDialogDestination,
                     bundleOf(
                         getString(R.string.ARG_MESSAGE) to getString(R.string.player_edition_help_description))
                 )

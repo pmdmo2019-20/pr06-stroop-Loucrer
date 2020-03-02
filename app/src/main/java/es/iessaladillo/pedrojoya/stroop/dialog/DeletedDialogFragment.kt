@@ -26,20 +26,25 @@ class DeletedDialogFragment: DialogFragment() {
             builder.setTitle(R.string.player_deletion_title)
             builder.setMessage(R.string.player_deletion_message)
                 .setPositiveButton(R.string.player_deletion_yes) { _, _ ->
-                    var userDao = AppDatabase.getInstance(this.requireContext()).userDao
-
+                    val userDao = AppDatabase.getInstance(this.requireContext()).userDao
+                    // Obtenemos el id de los argumentos
                     val userId: Long by lazy {
                         arguments!!.getLong(getString(R.string.ARGS_USER_DELETE))
                     }
+                    // Eliminamos dicho usuario
                     userDao.deletedUser(userDao.queryUser(userId))
+
                     val settings: SharedPreferences by lazy {
                         PreferenceManager.getDefaultSharedPreferences(activity)
                     }
+                    // Deseleccionamos el jugador actual de los settings
                     settings.edit {
                         putLong("currentPlayer", NO_PLAYER)
                     }
+
+                    // Nos dirigimos de nuevo al playerSelection
                     PlayerSelectionViewModel(userDao,activity!!.application).setCurrentUserId(-1)
-                    findNavController().navigate(R.id.deletedDialogFragment)
+                    findNavController().navigate(R.id.toBack)
                 }
                 .setNegativeButton(R.string.player_deletion_no) { _, _ ->
 

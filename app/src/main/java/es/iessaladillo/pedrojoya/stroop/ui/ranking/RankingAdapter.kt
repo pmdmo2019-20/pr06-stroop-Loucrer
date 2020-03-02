@@ -18,6 +18,8 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
 
     var gameList: List<Game> = arrayListOf()
 
+    var filter = ""
+
 
     init {
         setHasStableIds(true)
@@ -52,12 +54,21 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
         fun bind(games: Game) {
             games.run {
                 imgAvatR.setImageResource(user.userImgId)
-                lblName.text = user.userName
-                lblGameMode.text = gameMode
-                lblTime.text = totalTime.toString()
-                lblTotalWords.text = totalWords.toString()
-                lblCorrects.text = corrects.toString()
+                lblName.text =   user.userName
+                lblTotalWords.text = application.getString(R.string.ranking_words, totalWords.toString())
+                lblCorrects.text = application.getString(R.string.ranking_corrects, corrects.toString())
                 lblPoints2.text = points.toString()
+                lblTime.text = application.getString(R.string.ranking_minutes, totalTime.div(60000).toString())
+                lblTime.visibility = View.VISIBLE
+                if(filter == "all"){
+                    lblGameMode.text = application.getString(R.string.ranking_item, gameMode)
+                    lblGameMode.visibility = View.VISIBLE
+                }else if(filter == "attempts"){
+                    lblGameMode.visibility = View.INVISIBLE
+                } else if(filter == "time"){
+                    lblGameMode.visibility = View.INVISIBLE
+                    lblTime.visibility = View.INVISIBLE
+                }
             }
         }
     }
