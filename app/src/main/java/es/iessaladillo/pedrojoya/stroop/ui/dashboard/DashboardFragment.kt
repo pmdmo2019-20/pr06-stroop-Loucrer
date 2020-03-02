@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui
+package es.iessaladillo.pedrojoya.stroop.dashboard
 
 import androidx.fragment.app.Fragment
 import es.iessaladillo.pedrojoya.stroop.R

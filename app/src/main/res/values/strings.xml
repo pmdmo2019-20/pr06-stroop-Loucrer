@@ -53,6 +53,7 @@
     <string name="player_edition_help_description">Here you can change the nickname and the avatar of the current player</string>
     <string name="player_edition_no_avatars_yet">No avatars yet</string>
 
+    <string name="game_title">Game</string>
     <string name="game_lblWordsLabel">Words</string>
     <string name="game_lblCorrectLabel">Correct</string>
     <string name="game_yellow">Yellow</string>
@@ -96,5 +97,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tarjet_contentDescription">imagenTargeta</string>
+    <string name="ARG_MESSAGE" />
+    <string name="dialog_title">Dialog</string>
+    <string name="settingsGroupOption1">GAME</string>
+    <string name="settingsGroupOption2">RANKING</string>
+    <string name="textExampleView">TextView</string>
+    <string name="imgContentDescription">Imagen</string>
+    <string name="defaultNickname">(nickname)</string>
+    <string name="ARGS_USER_ID" />
+    <string name="ARGS_USER_DELETE" />
+    <string name="ranking_item">Game mode: %1$s</string>
+    <string name="game_lblCorrectLabelTotal">CorrectTotal</string>
+    <string name="game_lblWordsLabelTotal">WordsTotal</string>
+    <string name="game_lblAttempsTotal">AttempsTotal</string>
+    <string name="game_pointsTotal">Total Points</string>
+    <string name="WordExample">I`am Word</string>
+    <string name="defaultPoints">0</string>
+
 
 </resources>

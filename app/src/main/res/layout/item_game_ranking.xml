@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_viewGame"
+        android:layout_width="400dp"
+        android:layout_height="126dp"
+        app:cardCornerRadius="@dimen/main_card_cornerRadius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="PrivateResource">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/dimeConstrainWidth"
+            android:layout_height="@dimen/dimeConstrainHeight">
+
+            <ImageView
+                android:id="@+id/imgAvatR"
+                android:layout_width="54dp"
+                android:layout_height="69dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_play_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
+
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/defaultNickname"
+                android:textSize="@dimen/main_textSize_2x"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgAvatR"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatR" />
+
+            <TextView
+                android:id="@+id/lblGameMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="@string/defaultNickname"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatR"
+                app:layout_constraintTop_toBottomOf="@+id/lblName" />
+
+            <TextView
+                android:id="@+id/lblTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="@string/defaultNickname"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatR"
+                app:layout_constraintTop_toBottomOf="@+id/lblGameMode" />
+
+            <TextView
+                android:id="@+id/lblTotalWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="@string/defaultNickname"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatR"
+                app:layout_constraintTop_toBottomOf="@+id/lblTime" />
+
+            <TextView
+                android:id="@+id/lblCorrects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="@string/defaultNickname"
+                app:layout_constraintStart_toEndOf="@+id/imgAvatR"
+                app:layout_constraintTop_toBottomOf="@+id/lblTotalWords" />
+
+            <TextView
+                android:id="@+id/lblPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="56dp"
+                android:text="@string/game_points"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lblPoints2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="@string/defaultNickname"
+                android:textColor="@color/rankingOption"
+                android:textSize="@dimen/main_textSize_3x"
+                app:layout_constraintStart_toStartOf="@+id/lblPoints"
+                app:layout_constraintTop_toBottomOf="@+id/lblPoints" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

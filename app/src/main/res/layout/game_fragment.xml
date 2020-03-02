@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/game_header_height"
+        android:background="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/lblChangeWordsWithColors"
+        android:layout_width="@dimen/sizeWord"
+        android:layout_height="@dimen/sizeWord"
+        android:gravity="center"
+        android:text="@string/WordExample"
+        android:textSize="@dimen/main_textSize_6x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbBar"
+        app:layout_constraintVertical_bias="0.317" />
+
+    <ImageView
+        android:id="@+id/imgCorrect"
+        android:layout_width="@dimen/imgWidthAnswer"
+        android:layout_height="@dimen/mgHeightAnswer"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imgContentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_right_black_24dp"
+        app:tint="@color/rightAnswer" />
+
+    <ImageView
+        android:id="@+id/imgWrong"
+        android:layout_width="@dimen/imgWidthAnswer"
+        android:layout_height="@dimen/mgHeightAnswer"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/imgContentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toEndOf="@+id/imgCorrect"
+        app:srcCompat="@drawable/ic_wrong_black_24dp"
+        app:tint="@color/wrongAnswer" />
+
+    <TextView
+        android:id="@+id/lblTotalWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/game_lblWordsLabelTotal"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_3x"
+        app:layout_constraintEnd_toStartOf="@+id/lblTotalCorrect"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblTotalCorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/game_lblCorrectLabelTotal"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_3x"
+        app:layout_constraintEnd_toStartOf="@+id/lblTotalPointsOrAttempts"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblTotalWords"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/lblTotalPointsOrAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/game_pointsTotal"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_3x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblTotalCorrect"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:text="@string/game_lblWordsLabel"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_3x"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toStartOf="@+id/lblCorrect"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTotalWords"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/lblCorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/game_lblCorrectLabel"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_3x"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toStartOf="@+id/lblPointsOrAttempts"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblWords" />
+
+    <TextView
+        android:id="@+id/lblPointsOrAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="@string/game_points"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_3x"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblCorrect" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

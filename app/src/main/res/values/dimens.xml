@@ -28,5 +28,13 @@
 
     <dimen name="player_selection_item_imgAvatar_size">40dp</dimen>
     <dimen name="dashboard_card_img_height">83dp</dimen>
+    <dimen name="width_card_user">365dp</dimen>
+    <dimen name="height_card_user">111dp</dimen>
+    <dimen name="dimeConstrainWidth">379dp</dimen>
+    <dimen name="dimeConstrainHeight">119dp</dimen>
+    <dimen name="game_header_height">140dp</dimen>
+    <dimen name="imgWidthAnswer">150dp</dimen>
+    <dimen name="mgHeightAnswer">150dp</dimen>
+    <dimen name="sizeWord">150dp</dimen>
 
 </resources>
