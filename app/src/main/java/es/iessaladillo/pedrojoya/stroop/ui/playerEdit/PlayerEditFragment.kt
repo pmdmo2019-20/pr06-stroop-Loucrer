@@ -53,14 +53,16 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
 
     private fun save() {
         viewModel.currentPlayerAvatar.observe(this) {
-            viewModel.updateUser(
-                userId,
-                lblActualPlayerEdit.text.toString(),
-                avatars[viewModel.currentPlayerAvatar.value!!]
-            )
+            if (lblActualPlayerEdit.text.isNotEmpty()){
+                viewModel.updateUser(
+                    userId,
+                    lblActualPlayerEdit.text.toString(),
+                    avatars[viewModel.currentPlayerAvatar.value!!]
+                )
+            }
         }
-
         lblActualPlayerEdit.hideSoftKeyboard()
+        imgCurrentPlayerEdit.hideSoftKeyboard()
     }
 
     private fun observeEvents() {

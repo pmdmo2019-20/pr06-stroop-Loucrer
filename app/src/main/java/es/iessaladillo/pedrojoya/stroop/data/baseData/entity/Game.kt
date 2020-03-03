@@ -2,10 +2,21 @@ package es.iessaladillo.pedrojoya.stroop.data.baseData.entity
 
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "Game"
+    tableName = "Game",
+    foreignKeys = [
+    ForeignKey(
+        entity = User::class,
+        parentColumns = ["userId"],
+        childColumns = ["userId"],
+        onUpdate = CASCADE,
+        onDelete = CASCADE
+    )
+    ]
 )
 data class Game(
     @PrimaryKey(autoGenerate = true) val gameId: Long,

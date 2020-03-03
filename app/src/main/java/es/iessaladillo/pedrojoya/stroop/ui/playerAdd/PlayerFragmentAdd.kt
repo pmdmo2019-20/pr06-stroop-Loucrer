@@ -63,7 +63,7 @@ class PlayerFragmentAdd: Fragment(R.layout.player_fragment_add) {
 
 
     private fun save() {
-        if (lblActualPlayerEdit.text.toString().isNotEmpty() && viewModel.currentPlayerId.value != 0L) {
+        if (lblActualPlayerEdit.text.isNotEmpty() && viewModel.currentPlayerId.value != 0L) {
             viewModel.addUser(lblActualPlayerEdit.text.toString(), viewModel.currentPlayerId.value!!.toInt())
             lblActualPlayerEdit.hideSoftKeyboard()
         }
