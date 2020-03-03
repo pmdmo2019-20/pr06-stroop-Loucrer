@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "29c82af0d0ab2eb8a77ac8bdc4471d07",
+    "identityHash": "76ca4076ccabea64ff4ff259dce0fba9",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userName` TEXT NOT NULL, `userImgId` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userName` TEXT NOT NULL, `imageId` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "userId",
@@ -21,8 +21,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "userImgId",
-            "columnName": "userImgId",
+            "fieldPath": "imageId",
+            "columnName": "imageId",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -47,7 +47,7 @@
       },
       {
         "tableName": "Game",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gameId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gameMode` TEXT NOT NULL, `totalTime` INTEGER NOT NULL, `totalWords` INTEGER NOT NULL, `wrongs` INTEGER NOT NULL, `corrects` INTEGER NOT NULL, `points` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `userName` TEXT NOT NULL, `userImgId` INTEGER NOT NULL, FOREIGN KEY(`userId`) REFERENCES `User`(`userId`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gameId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `gameMode` TEXT NOT NULL, `totalTime` INTEGER NOT NULL, `totalWords` INTEGER NOT NULL, `wrongs` INTEGER NOT NULL, `corrects` INTEGER NOT NULL, `points` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "gameId",
@@ -90,24 +90,6 @@
             "columnName": "points",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "user.userId",
-            "columnName": "userId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "user.userName",
-            "columnName": "userName",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "user.userImgId",
-            "columnName": "userImgId",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -117,6 +99,50 @@
           "autoGenerate": true
         },
         "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "UserGame",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `gameId` INTEGER NOT NULL, PRIMARY KEY(`userId`, `gameId`), FOREIGN KEY(`userId`) REFERENCES `User`(`userId`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`gameId`) REFERENCES `Game`(`gameId`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gameId",
+            "columnName": "gameId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId",
+            "gameId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_UserGame_userId",
+            "unique": false,
+            "columnNames": [
+              "userId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_UserGame_userId` ON `${TABLE_NAME}` (`userId`)"
+          },
+          {
+            "name": "index_UserGame_gameId",
+            "unique": false,
+            "columnNames": [
+              "gameId"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_UserGame_gameId` ON `${TABLE_NAME}` (`gameId`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "User",
@@ -128,6 +154,17 @@
             "referencedColumns": [
               "userId"
             ]
+          },
+          {
+            "table": "Game",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "gameId"
+            ],
+            "referencedColumns": [
+              "gameId"
+            ]
           }
         ]
       }
@@ -135,7 +172,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '29c82af0d0ab2eb8a77ac8bdc4471d07')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '76ca4076ccabea64ff4ff259dce0fba9')"
     ]
   }
 }

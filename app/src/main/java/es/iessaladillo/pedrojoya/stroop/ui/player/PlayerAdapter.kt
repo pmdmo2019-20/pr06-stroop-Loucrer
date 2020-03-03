@@ -45,7 +45,7 @@ class PlayerAdapter(): ListAdapter< User ,PlayerAdapter.ViewHolder>(StudentDiffC
         fun bind(user : User) {
             user.run {
                 lblUser.text = user.userName
-                imgUser.setImageResource(user.userImgId)
+                imgUser.setImageResource(user.imageId)
                 if(posicionPlayer == adapterPosition){
                     lblBarCheck.visibility = View.VISIBLE
                 } else {

@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.stroop.data.baseData.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.User
+import es.iessaladillo.pedrojoya.stroop.data.pojo.UserWithGame
 
 @Dao
 interface UserDao {
@@ -21,4 +22,5 @@ interface UserDao {
 
     @Query("SELECT * FROM User WHERE userId = :userId")
     fun queryUser(userId: Long): User
+
 }

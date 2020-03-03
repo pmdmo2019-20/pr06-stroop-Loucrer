@@ -9,11 +9,12 @@ import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.UserDao
 import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.UserWithGameDao
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.User
+import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.UserGame
 
 // En entities añadiremos todas las tablas que contendra nuestra base de datos
 // Esto es copy paste de los apuntes
 @Database(
-    entities = [User::class, Game::class],
+    entities = [User::class, Game::class, UserGame::class],
     version = 1,
     exportSchema = true
 )

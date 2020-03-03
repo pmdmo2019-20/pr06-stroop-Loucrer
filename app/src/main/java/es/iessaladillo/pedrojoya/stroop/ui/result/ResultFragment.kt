@@ -1,9 +1,11 @@
 package es.iessaladillo.pedrojoya.stroop.ui.result
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.baseData.AppDatabase
@@ -16,13 +18,26 @@ import kotlinx.android.synthetic.main.result_fragment.toolbar
 class ResultFragment: Fragment(R.layout.result_fragment) {
 
     private val viewModel : ResultViewModel by viewModels {
-        ResulViewModelFactory(AppDatabase.getInstance(this.requireContext()).gameDao)
+        ResulViewModelFactory(AppDatabase.getInstance(this.requireContext()).gameDao,
+            AppDatabase.getInstance(this.requireContext()).userDao,
+            AppDatabase.getInstance(this.requireContext()).userWithGameDao,
+            requireActivity().application)
+    }
+
+
+    val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(activity)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupToolBar()
         setupViews()
+        saveUserGame()
+    }
+
+    private fun saveUserGame() {
+        viewModel.insertUserGame()
     }
 
     private fun setupToolBar() {
@@ -36,8 +51,8 @@ class ResultFragment: Fragment(R.layout.result_fragment) {
     }
 
     private fun setupViewsHeader(gameResult: Game) {
-        imgCurrentPlayer.setImageResource(gameResult.user.userImgId)
-        lblPlayerSelected.text = gameResult.user.userName
+        imgCurrentPlayer.setImageResource(viewModel.getCurrentUser(settings.getLong("currentPlayer", -1)).imageId)
+        lblPlayerSelected.text = viewModel.getCurrentUser(settings.getLong("currentPlayer", -1)).userName
     }
 
     private fun setupViewsBody(gameResult: Game) {

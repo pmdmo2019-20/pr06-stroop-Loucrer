@@ -92,7 +92,7 @@ class GameFragment : Fragment(R.layout.game_fragment) {
         val totalCorrects = viewModel.currentRightWords.value!!
         val totalWrongs = viewModel.currentWrongWords.value!!
         val totalPoints = viewModel.currentPoint.value!!
-        return Game(0,user,modGame,timeGame.toInt(), wordCounts , totalWrongs, totalCorrects, totalPoints)
+        return Game(0,modGame,timeGame.toInt(), wordCounts , totalWrongs, totalCorrects, totalPoints)
     }
 
     private fun setupViews() {

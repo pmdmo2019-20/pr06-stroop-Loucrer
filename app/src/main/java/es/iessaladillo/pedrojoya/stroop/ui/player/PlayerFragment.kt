@@ -68,7 +68,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
             if (viewModel.currentUserId.value != -1L && settings.getLong("currentPlayer",-1) != -1L) {
                 var user = viewModel.queryUser(it)
                 lblCurrentPlayer.text = user.userName
-                imgCurrentPlayer.setImageResource(user.userImgId)
+                imgCurrentPlayer.setImageResource(user.imageId)
                 btnEdit.visibility = View.VISIBLE
                 playerAdapter.posicionPlayer =  viewModel.queryUser(it).userId.toInt() -1 // Necesitamos el -1 ya que la posicion del usuario comienza desde 1 y el adaptador cuenta desde 0
             } else {

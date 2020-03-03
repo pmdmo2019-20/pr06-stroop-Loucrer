@@ -98,6 +98,7 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
     private fun observeLiveData() {
         viewmodel.games.observe(this) {
             showGames(it)
+            listAdapter.notifyDataSetChanged()
         }
     }
 

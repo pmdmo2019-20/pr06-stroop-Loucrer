@@ -5,19 +5,20 @@ import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
+import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.User
 import es.iessaladillo.pedrojoya.stroop.data.pojo.UserWithGame
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_game_ranking.*
 
-class RankingAdapter(private val application: Application): RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
+class RankingAdapter(private val application: Application): ListAdapter<UserWithGame ,RankingAdapter.ViewHolder>(StudentDiffCallback) {
 
 
     var onItemClickListener: ((Int) -> Unit)? = null
-
-    private var gameList: List<UserWithGame> = arrayListOf()
 
     var filter = ""
 
@@ -32,37 +33,29 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int = gameList.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val userGame: UserWithGame = gameList[position]
+        val userGame: UserWithGame = currentList[position]
         holder.bind(userGame)
-    }
-
-    fun submitList(newList: List<UserWithGame>) {
-        gameList = newList
-        notifyDataSetChanged()
     }
 
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         init {
             containerView.setOnClickListener { onItemClickListener?.invoke(adapterPosition) }
-
         }
 
         fun bind(games: UserWithGame) {
             games.run {
-                imgAvatR.setImageResource(user.userImgId)
-                lblName.text =   user.userName
-                lblTotalWords.text = application.getString(R.string.ranking_words, game.totalWords.toString())
-                lblCorrects.text = application.getString(R.string.ranking_corrects, game.corrects.toString())
-                lblPoints2.text = game.points.toString()
-                lblTime.text = application.getString(R.string.ranking_minutes, game.totalTime.div(60000).toString())
+                imgAvatR.setImageResource(imageId)
+                lblName.text =   userName
+                lblTotalWords.text = application.getString(R.string.ranking_words, totalWords.toString())
+                lblCorrects.text = application.getString(R.string.ranking_corrects, corrects.toString())
+                lblPoints2.text = points.toString()
+                lblTime.text = application.getString(R.string.ranking_minutes, totalTime.div(60000).toString())
                 lblTime.visibility = View.VISIBLE
                 when (filter) {
                     "all" -> {
-                        lblGameMode.text = application.getString(R.string.ranking_item, game.gameMode)
+                        lblGameMode.text = application.getString(R.string.ranking_item, gameMode)
                         lblGameMode.visibility = View.VISIBLE
                     }
                     "attempts" -> {
@@ -75,6 +68,16 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
                 }
             }
         }
+    }
+
+    object StudentDiffCallback : DiffUtil.ItemCallback<UserWithGame>() {
+
+        override fun areItemsTheSame(oldItem: UserWithGame, newItem: UserWithGame): Boolean =
+            oldItem.userName == newItem.userName
+
+        override fun areContentsTheSame(oldItem: UserWithGame, newItem: UserWithGame): Boolean =
+            oldItem == newItem
+
     }
 
 

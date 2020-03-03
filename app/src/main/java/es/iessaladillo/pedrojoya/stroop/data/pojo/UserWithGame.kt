@@ -6,11 +6,12 @@ import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.User
 
 data class UserWithGame(
-    @Embedded
-    val user: User,
-    @Relation(
-        parentColumn = "userId",
-        entityColumn = "userId"
-    )
-    val game: Game
+    val imageId: Int,
+    val userName: String,
+    val gameMode: String,
+    val totalTime: Int,
+    val totalWords: Int,
+    val corrects: Int,
+    val points: Int
+
 )

@@ -61,7 +61,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment){
         if (settings.getLong("currentPlayer", -1) != -1L) {
             viewModel.currentUserId.observe(this) {
                 var user = viewModel.queryUser(it)
-                imgCurrentPlayer.setImageResource(user.userImgId)
+                imgCurrentPlayer.setImageResource(user.imageId)
                 lblPlayerSelected.text = user.userName
             }
         } else {

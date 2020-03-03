@@ -38,7 +38,7 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViews()
-        viewModel.setCurrentPlayerAvatar(avatars.indexOf(viewModel.queryUser(userId).userImgId))
+        viewModel.setCurrentPlayerAvatar(avatars.indexOf(viewModel.queryUser(userId).imageId))
     }
 
     private fun setupViews() {
@@ -78,7 +78,7 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
 
     private fun setupCurrentUser() {
         lblActualPlayerEdit.setText(viewModel.queryUser(userId).userName)
-        imgCurrentPlayerEdit.setImageResource(viewModel.queryUser(userId).userImgId)
+        imgCurrentPlayerEdit.setImageResource(viewModel.queryUser(userId).imageId)
     }
 
     private fun submitListAvatars(avatars: List<Int>) {
