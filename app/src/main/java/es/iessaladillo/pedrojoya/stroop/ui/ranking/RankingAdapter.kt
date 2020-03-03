@@ -22,11 +22,6 @@ class RankingAdapter(private val application: Application): ListAdapter<UserWith
 
     var filter = ""
 
-
-    init {
-        setHasStableIds(true)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemView = layoutInflater.inflate(R.layout.item_game_ranking, parent, false)

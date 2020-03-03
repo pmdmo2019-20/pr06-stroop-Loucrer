@@ -11,21 +11,15 @@ import es.iessaladillo.pedrojoya.stroop.data.pojo.UserWithGame
 interface UserWithGameDao {
 
     @Transaction
-    @Query("SELECT * FROM User us, Game g, UserGame ug WHERE us.userId = ug.userId AND g.gameId = ug.gameId ORDER BY points DESC")
+    @Query("SELECT * FROM User us, Game g, UserGame ug WHERE us.userId = ug.userId AND g.gameId = ug.gameId ORDER BY points DESC LIMIT 10")
     fun queryAllGames(): List<UserWithGame>
 
     @Transaction
-    @Query("SELECT * " +
-            "FROM User u, Game g, UserGame ug " +
-            "WHERE u.userId = ug.userId AND g.gameId = ug.gameId AND gameMode = \"attempts\" " +
-            "ORDER BY points DESC")
+    @Query("SELECT * FROM User u, Game g, UserGame ug WHERE u.userId = ug.userId AND g.gameId = ug.gameId AND gameMode = \"attempts\" ORDER BY points DESC LIMIT 10")
     fun queryAllGameForAttempts(): List<UserWithGame>
 
     @Transaction
-    @Query("SELECT * " +
-            "FROM User u, Game g, UserGame ug " +
-            "WHERE u.userId = ug.userId AND g.gameId = ug.gameId AND gameMode = \"time\" " +
-            "ORDER BY points DESC")
+    @Query("SELECT * FROM User u, Game g, UserGame ug WHERE u.userId = ug.userId AND g.gameId = ug.gameId AND gameMode = \"time\" ORDER BY points DESC LIMIT 10")
     fun queryAllGameForTime(): List<UserWithGame>
 
     @Insert

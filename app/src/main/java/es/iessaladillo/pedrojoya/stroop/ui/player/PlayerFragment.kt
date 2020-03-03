@@ -102,7 +102,6 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     private fun setupAdapter() {
         playerAdapter = PlayerAdapter().also { it ->
             // Inicializamos el click
-
             // Para detectar el click de unos de sus items
             it.onItemClickListener = {
                 selectCurrentPlayer(it)
