@@ -27,7 +27,7 @@ class AssistantFragmentAdapter(var pageList: ArrayList<Page>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val page: Page = pageList[position]
-        currentPosition=position
+        currentPosition = position
         holder.bind(page)
     }
 

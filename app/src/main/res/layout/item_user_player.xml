@@ -35,7 +35,7 @@
                 android:contentDescription="@string/imgContentDescription" />
 
             <View
-                android:id="@+id/viewCheck"
+                android:id="@+id/separater"
                 android:layout_width="379dp"
                 android:layout_height="3dp"
                 android:layout_gravity="bottom"
@@ -49,6 +49,13 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/textExampleView" />
+
+            <TextView
+                android:id="@+id/lblBarCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:background="@color/primary"/>
 
 
         </LinearLayout>

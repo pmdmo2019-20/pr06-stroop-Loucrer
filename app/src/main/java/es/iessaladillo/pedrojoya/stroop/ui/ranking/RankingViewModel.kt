@@ -7,13 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.GameDao
+import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.UserWithGameDao
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
+import es.iessaladillo.pedrojoya.stroop.data.pojo.UserWithGame
 
-class RankingViewModel(private val gameDao: GameDao): ViewModel() {
+class RankingViewModel(private val userWithGameDao: UserWithGameDao): ViewModel() {
 
     // Lista de partidas jugadas
-    private val _currentGameList : MutableLiveData<List<Game>> = MutableLiveData()
-    val games: LiveData<List<Game>>
+    private val _currentGameList : MutableLiveData<List<UserWithGame>> = MutableLiveData()
+    val games: LiveData<List<UserWithGame>>
         get() = _currentGameList
 
     init {
@@ -21,21 +23,21 @@ class RankingViewModel(private val gameDao: GameDao): ViewModel() {
     }
 
 
-    fun queryAllUserGames(): List<Game>{
-      _currentGameList.value = gameDao.queryAllGames()
-      return gameDao.queryAllGames()
+    fun queryAllUserGames(): List<UserWithGame>{
+      _currentGameList.value = userWithGameDao.queryAllGames()
+      return userWithGameDao.queryAllGames()
     }
 
 
-    fun queryAllUserGamesTime(): List<Game>{
-        _currentGameList.value = gameDao.queryAllGameForTime()
-        return gameDao.queryAllGameForTime()
+    fun queryAllUserGamesTime(): List<UserWithGame>{
+        _currentGameList.value = userWithGameDao.queryAllGameForTime()
+        return userWithGameDao.queryAllGameForTime()
     }
 
 
-    fun queryAllUserGamesAttempts(): List<Game>{
-        _currentGameList.value = gameDao.queryAllGameForAttempts()
-        return gameDao.queryAllGameForAttempts()
+    fun queryAllUserGamesAttempts(): List<UserWithGame>{
+        _currentGameList.value = userWithGameDao.queryAllGameForAttempts()
+        return userWithGameDao.queryAllGameForAttempts()
     }
 
 

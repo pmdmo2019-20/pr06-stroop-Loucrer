@@ -98,7 +98,12 @@ class PlayerFragmentAdd: Fragment(R.layout.player_fragment_add) {
     }
 
     private fun setupAdapter() {
-        playerAddAdapter = PlayerAddAdapter().also {it.onItemClickListener = { position -> selectAvatar(position) } }
+        playerAddAdapter = PlayerAddAdapter().also {
+            it.onItemClickListener = {
+                position -> selectAvatar(position)
+                playerAddAdapter.posicionAvatar = position // Le asignamos la posicion al usuario clickeado
+                playerAddAdapter.notifyDataSetChanged() // Notificamos a todos del cambio realizado
+        } }
     }
 
     private fun selectAvatar(position: Int) {

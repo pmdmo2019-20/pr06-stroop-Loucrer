@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.item_avatar_player.*
 class PlayerAddAdapter() :RecyclerView.Adapter<PlayerAddAdapter.ViewHolder>() {
 
     private var avatarList: List<Int> = arrayListOf()
+
+    var  posicionAvatar = -1
+
     var onItemClickListener: ((Int) -> Unit)? = null
 
 
@@ -41,7 +44,11 @@ class PlayerAddAdapter() :RecyclerView.Adapter<PlayerAddAdapter.ViewHolder>() {
         }
         fun bind(avatar:Int) {
             imgAvat.setImageResource(avatar)
-            viewCheck.visibility=View.INVISIBLE
+            if(posicionAvatar == adapterPosition){
+                viewCheck.visibility=View.VISIBLE
+            } else {
+                viewCheck.visibility=View.INVISIBLE
+            }
         }
     }
 }

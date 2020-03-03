@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
+import es.iessaladillo.pedrojoya.stroop.data.pojo.UserWithGame
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_game_ranking.*
 
@@ -16,7 +17,7 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
 
     var onItemClickListener: ((Int) -> Unit)? = null
 
-    var gameList: List<Game> = arrayListOf()
+    private var gameList: List<UserWithGame> = arrayListOf()
 
     var filter = ""
 
@@ -34,11 +35,11 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
     override fun getItemCount(): Int = gameList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val userGame: Game = gameList[position]
+        val userGame: UserWithGame = gameList[position]
         holder.bind(userGame)
     }
 
-    fun submitList(newList: List<Game>) {
+    fun submitList(newList: List<UserWithGame>) {
         gameList = newList
         notifyDataSetChanged()
     }
@@ -50,24 +51,27 @@ class RankingAdapter(private val application: Application): RecyclerView.Adapter
 
         }
 
-        @SuppressLint("StringFormatInvalid")
-        fun bind(games: Game) {
+        fun bind(games: UserWithGame) {
             games.run {
                 imgAvatR.setImageResource(user.userImgId)
                 lblName.text =   user.userName
-                lblTotalWords.text = application.getString(R.string.ranking_words, totalWords.toString())
-                lblCorrects.text = application.getString(R.string.ranking_corrects, corrects.toString())
-                lblPoints2.text = points.toString()
-                lblTime.text = application.getString(R.string.ranking_minutes, totalTime.div(60000).toString())
+                lblTotalWords.text = application.getString(R.string.ranking_words, game.totalWords.toString())
+                lblCorrects.text = application.getString(R.string.ranking_corrects, game.corrects.toString())
+                lblPoints2.text = game.points.toString()
+                lblTime.text = application.getString(R.string.ranking_minutes, game.totalTime.div(60000).toString())
                 lblTime.visibility = View.VISIBLE
-                if(filter == "all"){
-                    lblGameMode.text = application.getString(R.string.ranking_item, gameMode)
-                    lblGameMode.visibility = View.VISIBLE
-                }else if(filter == "attempts"){
-                    lblGameMode.visibility = View.INVISIBLE
-                } else if(filter == "time"){
-                    lblGameMode.visibility = View.INVISIBLE
-                    lblTime.visibility = View.INVISIBLE
+                when (filter) {
+                    "all" -> {
+                        lblGameMode.text = application.getString(R.string.ranking_item, game.gameMode)
+                        lblGameMode.visibility = View.VISIBLE
+                    }
+                    "attempts" -> {
+                        lblGameMode.visibility = View.INVISIBLE
+                    }
+                    "time" -> {
+                        lblGameMode.visibility = View.INVISIBLE
+                        lblTime.visibility = View.INVISIBLE
+                    }
                 }
             }
         }

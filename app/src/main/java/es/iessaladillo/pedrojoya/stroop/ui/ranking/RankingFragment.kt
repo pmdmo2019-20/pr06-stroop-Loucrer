@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.stroop.ui.ranking
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -8,13 +9,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.baseData.AppDatabase
-import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
+import es.iessaladillo.pedrojoya.stroop.data.pojo.UserWithGame
 import es.iessaladillo.pedrojoya.stroop.extensions.invisibleUnless
 import kotlinx.android.synthetic.main.ranking_fragment.*
 import kotlinx.android.synthetic.main.ranking_fragment.toolbar
@@ -27,10 +29,13 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
     private val viewmodel: RankingViewModel by viewModels {
         RankingViewModelFactory(
             AppDatabase.getInstance
-                (this.requireContext()).gameDao)
+                (this.requireContext()).userWithGameDao)
     }
 
-    var itemSelected = ""
+    val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(activity)
+    }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,6 +48,22 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
         setupRecyclerView()
         observeLiveData()
         observeSpinner()
+        setupValueDefaultSpinner()
+    }
+
+    private fun setupValueDefaultSpinner() {
+        val itemSelected = settings.getString(getString(R.string.prefRankingFilter_key), getString(R.string.prefRankingFilter_defaultValue))
+        when (itemSelected!!.toLowerCase()) {
+            "all" -> {
+                spFilter.setSelection(0)
+            }
+            "time" -> {
+                spFilter.setSelection(1)
+            }
+            "attempts" -> {
+                spFilter.setSelection(2)
+            }
+        }
     }
 
     private fun observeSpinner(){
@@ -80,7 +101,7 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
         }
     }
 
-    private fun showGames(game: List<Game>) {
+    private fun showGames(game: List<UserWithGame>) {
         lstGames.post {
             listAdapter.submitList(game)
             imgEmptyRV.invisibleUnless(game.isEmpty())

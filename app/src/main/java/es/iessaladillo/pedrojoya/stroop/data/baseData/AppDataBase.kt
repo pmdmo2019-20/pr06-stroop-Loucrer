@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.GameDao
 import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.UserDao
+import es.iessaladillo.pedrojoya.stroop.data.baseData.dao.UserWithGameDao
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.Game
 import es.iessaladillo.pedrojoya.stroop.data.baseData.entity.User
 
@@ -20,6 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract val userDao: UserDao
     abstract val gameDao: GameDao
+    abstract val userWithGameDao: UserWithGameDao
 
     companion object {
         @Volatile

@@ -70,6 +70,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
                 lblCurrentPlayer.text = user.userName
                 imgCurrentPlayer.setImageResource(user.userImgId)
                 btnEdit.visibility = View.VISIBLE
+                playerAdapter.posicionPlayer =  viewModel.queryUser(it).userId.toInt() -1 // Necesitamos el -1 ya que la posicion del usuario comienza desde 1 y el adaptador cuenta desde 0
             } else {
                 lblCurrentPlayer.text = getString(R.string.player_selection_no_player_selected)
                 imgCurrentPlayer.setImageResource(R.drawable.logo)
@@ -82,6 +83,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         fabAdd.setOnClickListener { navigateToAddPlayer() }
         imgAddPlayer.setOnClickListener { navigateToAddPlayer() }
         lblEmptyView.setOnClickListener { navigateToAddPlayer() }
+
     }
 
     private fun navigateToEditPlayer() {
@@ -99,19 +101,26 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private fun setupAdapter() {
         playerAdapter = PlayerAdapter().also { it ->
+            // Inicializamos el click
+
+            // Para detectar el click de unos de sus items
             it.onItemClickListener = {
                 selectCurrentPlayer(it)
+                playerAdapter.posicionPlayer = it // Le asignamos la posicion al usuario clickeado
+                playerAdapter.notifyDataSetChanged() // Notificamos a todos del cambio realizado
             }
         }
+
     }
 
     private fun selectCurrentPlayer(position: Int) {
         // Editamos en los settings el jugador que estará como activo para la app
         settings.edit {
-            putLong("currentPlayer", playerAdapter.userList[position].userId)
+            putLong("currentPlayer", playerAdapter.currentList[position].userId)
         }
+
         // Establecemos el usuario seleccionado de la lista con dicho id
-        viewModel.setCurrentUserId(playerAdapter.userList[position].userId)
+        viewModel.setCurrentUserId(playerAdapter.currentList[position].userId)
 
     }
 
