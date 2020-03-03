@@ -95,7 +95,11 @@ class PlayerEditFragment: Fragment(R.layout.player_fragment_edit) {
 
     private fun setupAdapter() {
         playerEditAdapter = PlayerEditAdapter().also {
-            it.onItemClickListener = { position -> selectAvatar(position) }
+            it.onItemClickListener = { position ->
+                selectAvatar(position)
+                playerEditAdapter.posicionAvatar = position // Le asignamos la posicion al usuario clickeado
+                playerEditAdapter.notifyDataSetChanged() // Notificamos a todos del cambio realizado
+            }
         }
     }
 

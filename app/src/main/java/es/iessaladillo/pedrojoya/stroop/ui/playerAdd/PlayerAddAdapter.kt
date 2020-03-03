@@ -45,9 +45,9 @@ class PlayerAddAdapter() :RecyclerView.Adapter<PlayerAddAdapter.ViewHolder>() {
         fun bind(avatar:Int) {
             imgAvat.setImageResource(avatar)
             if(posicionAvatar == adapterPosition){
-                viewCheck.visibility=View.VISIBLE
+                viewCheck.visibility = View.VISIBLE
             } else {
-                viewCheck.visibility=View.INVISIBLE
+                viewCheck.visibility = View.INVISIBLE
             }
         }
     }
